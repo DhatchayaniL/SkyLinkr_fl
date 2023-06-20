@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin Login</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url("https://img1.wallspic.com/previews/1/8/7/1/7/171781/171781-sitting_on_plane_wing-airplane-flight-wing-aviation-x750.jpg");
+            background-size: cover;
+            background-position: center;
+        }
+
+        h1 {
+            text-align: center;
+            margin-top: 50px;
+            color: #fff;
+        }
+
+        .admin-login-form {
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.5);
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        .admin-login-form label {
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .admin-login-form input[type="text"],
+        .admin-login-form input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            box-sizing: border-box;
+        }
+
+        .admin-login-form button[type="submit"] {
+            background-color: #92a8fe;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .admin-login-form button[type="submit"]:hover {
+            background-color: #555;
+        }
+
+        .admin-login-form p {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .admin-login-form p a {
+            color: #333;
+            text-decoration: none;
+        }
+
+        .admin-login-form p a:hover {
+            text-decoration: underline;
+        }
+
+        .error-message {
+            color: red;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Admin Login</h1>
+    {% if error %}
+        <p class="error-message">{{ error }}</p>
+    {% endif %}
+    <div class="admin-login-form">
+        <form method="POST" action="{{ url_for('admin_login') }}">
+            <button type="submit" formaction="{{ url_for('user_login') }}">Switch to User Login</button>
+            <label for="username">Username:</label>
+            <input type="text" name="username" required><br>
+            <label for="password">Password:</label>
+            <input type="password" name="password" required><br>
+            <button type="submit">Login</button>
+        </form>
+    </div>
+</body>
+</html>

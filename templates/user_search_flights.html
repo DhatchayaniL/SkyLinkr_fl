@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Search Flights</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #e0eaf3;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #333;
+            padding: 10px 20px;
+        }
+
+        .logout-button {
+            background-color: #92a8fe;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .navbar .right {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+        }
+
+
+        .logout-button:hover {
+            background-color: #555;
+        }
+
+        h1 {
+            text-align: center;
+            margin-top: 50px;
+            color: #333;
+        }
+
+        .form1 {
+            max-width: 550px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f8f8f8;
+            border: 1px solid #e0eaf3;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+        }
+
+        .form1 label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .form1 input[type="text"],
+        .form1 input[type="date"],
+        /* .form1 input[type="time"], */
+        .form1 input[type="number"],
+        .form1 input[type="submit"] {
+            display: block;
+            width: 95%;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+
+        .form1 input[type="submit"] {
+            background-color: #92a8fe;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .form1 input[type="submit"]:hover {
+            background-color: #555;
+        }
+
+        h2 {
+            margin-top: 30px;
+            color: #333;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            text-align: left;
+            padding: 8px;
+        }
+
+        th {
+            background-color: #92a8fe;
+            color: #fff;
+        }
+
+        tr:nth-child(even) {
+            background-color: #e0eaf3;
+        }
+    </style>
+</head>
+<body>
+  <h1>Search Flights</h1>
+  <div class="navbar">
+    <div class="right">
+      <form action="{{ url_for('user_logout') }}" method="POST">
+        <button class="logout-button" type="submit">Logout</button>
+      </form>
+    </div>
+  </div>
+
+  <div class="form1">
+    <form method="post" action="{{ url_for('user_search_flights') }}">
+      <label>From:</label>
+      <input type="text" name="from_place" required><br>
+      <label>To:</label>
+      <input type="text" name="to_place" required><br>
+      <label>Date:</label>
+      <input type="date" name="date" required><br>
+      <label>No. of Seats:</label>
+      <input type="number" name="seat_count" required><br>
+      <label>Adults:</label>
+      <input type="number" name="adult_count" min="0" required><br>
+      <label>Children:</label>
+      <input type="number" name="child_count" min="0" required><br>
+      <input type="submit" value="Search">
+    </form>
+  </div>
+  
+  <!-- ... -->
+{% if flights %}
+<h2>Available Flights</h2>
+<table>
+  <thead>
+    <tr>
+      <th>Flight Number</th>
+      <th>From</th>
+      <th>To</th>
+      <th>Date</th>
+      <th>Time</th>
+      <th>Seats Available</th>
+      <th>Book</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for flight in flights %}
+      <tr>
+        <td>{{ flight.flight_number }}</td>
+        <td>{{ flight.from_place }}</td>
+        <td>{{ flight.to_place }}</td>
+        <td>{{ flight.date }}</td>
+        <td>{{ flight.time }}</td>
+        <td>{{ flight.seat_count }}</td>
+        <td>
+          <form method="post" action="{{ url_for('user_booking') }}">
+            <input type="hidden" name="flight_id" value="{{ flight._id }}">
+            <input type="hidden" name="seat_count" value="{{ seat_count }}">
+            <input type="hidden" name="adult_count" value="{{ adult_count }}">
+            <input type="hidden" name="child_count" value="{{ child_count }}">
+            <label>Seats:</label>
+            <input type="number" name="seats" min="1" max="{{ flight.seat_count }}" required><br>
+            <input type="submit" value="Book">
+          </form>
+        </td>
+      </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endif %}
+<!-- ... -->
+
+</body>
+</html>

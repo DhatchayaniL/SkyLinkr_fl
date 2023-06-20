@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>User Login</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url("https://img1.wallspic.com/previews/1/8/7/1/7/171781/171781-sitting_on_plane_wing-airplane-flight-wing-aviation-x750.jpg"); 
+            background-size: cover;
+            background-position: center;
+        }
+
+        h1 {
+            text-align: center;
+            margin-top: 50px;
+            color: #fff;
+        }
+
+        .login-form {
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: transparent(0,0,0,0);
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        .login-form label {
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .login-form input[type="text"],
+        .login-form input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+
+        .login-form button[type="submit"],
+        .login-form button[type="button"] {
+            background-color: #92a8fe;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .login-form button[type="submit"]:hover,
+        .login-form button[type="button"]:hover {
+            background-color: #555;
+        }
+
+        .login-form p {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .login-form p a {
+            color: #333;
+            text-decoration: none;
+        }
+
+        .login-form p a:hover {
+            text-decoration: underline;
+        }
+
+        .error-message {
+            color: red;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>User Login</h1>
+    {% if error %}
+        <p class="error-message">{{ error }}</p>
+    {% endif %}
+    <div class="login-form">
+        <form action="{{ url_for('user_login') }}" method="POST">
+            
+            <button type="submit" action="{{ url_for('admin_login') }}">Switch to Admin Login</button>
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required>
+
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+            <button type="submit">Login</button>
+        </form>
+        <p>Don't have an account? <a href="{{ url_for('user_signup') }}">Sign up</a></p>
+    </div>
+</body>
+</html>

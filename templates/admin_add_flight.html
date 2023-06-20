@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Flight</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f7fa;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #333;
+            padding: 10px 20px;
+            color: #fff;
+        }
+
+        .logout-button {
+            background-color: #92a8fe;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            
+        }
+
+        .logout-button:hover {
+            background-color: #555;
+        }
+
+        .navbar h1 {
+            flex-grow: 1;
+            margin: 0;
+            text-align: center;
+        }
+
+        h1 {
+            text-align: center;
+            margin-top: 50px;
+            color: #333;
+        }
+
+        .add-flight-form {
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #e0eaf3;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .add-flight-form label {
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .add-flight-form input[type="text"],
+        .add-flight-form input[type="date"],
+        .add-flight-form input[type="time"],
+        .add-flight-form input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            box-sizing: border-box;
+        }
+
+        .add-flight-form input[type="submit"] {
+            background-color: #92a8fe;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .add-flight-form input[type="submit"]:hover {
+            background-color: #555;
+        }
+    </style>
+</head>
+<body>
+    
+    <div class="navbar">
+        <h1>Add Flight</h1>
+        <form action="{{ url_for('admin_logout') }}" method="POST">
+          <button class="logout-button" type="submit">Logout</button>
+      </form>
+    </div>
+    <div class="add-flight-form">
+        <form action="{{ url_for('admin_add_flight') }}" method="POST">
+            <label for="flight_number">Flight Number:</label>
+            <input type="text" name="flight_number" required><br>
+            
+            <label for="from_place">From:</label>
+            <input type="text" name="from_place" required><br>
+            
+            <label for="to_place">To:</label>
+            <input type="text" name="to_place" required><br>
+            
+            <label for="date">Date:</label>
+            <input type="date" name="date" required><br>
+            
+            <label for="time">Time:</label>
+            <input type="time" name="time" required><br>
+            
+            <label for="seat_count">Seat Count:</label>
+            <input type="number" name="seat_count" required><br>
+            
+            <input type="submit" value="Add Flight">
+        </form>
+    </div>
+</body>
+</html>

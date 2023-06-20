@@ -1,0 +1,148 @@
+<!-- home.html -->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Home</title>
+    <style>
+         body {
+            font-family: Arial, sans-serif;
+            margin: 0; 
+            padding: 0; 
+            overflow: hidden;
+        }
+
+        .slideshow {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1; 
+        }
+
+        .slideshow img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; 
+            position: absolute;
+            left: 0;
+            top: 0;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
+
+        .slideshow img.active {
+            opacity: 1;
+        }
+
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: #f4f4f4;
+            padding: 20px;
+            z-index: 1; 
+        }
+
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+
+        nav ul li {
+            display: inline-block;
+        }
+
+        nav ul li a {
+            color: #333;
+            display: block;
+            padding: 10px;
+            text-decoration: none;
+        }
+
+        nav ul li a:hover {
+            background-color: #ddd;
+        }
+
+        h1 {
+            text-align: center;
+            margin-top: 100px; 
+        }
+
+        .slideshow {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        .slideshow img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; 
+            position: absolute;
+            left: 0;
+            top: 0;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
+
+        .slideshow img.active {
+            opacity: 1;
+        }
+
+        @keyframes slide {
+            0% { opacity: 0; }
+            20% { opacity: 1; }
+            33.33% { opacity: 1; }
+            53.33% { opacity: 0; }
+            100% { opacity: 0; }
+        }
+
+        .slideshow img:nth-child(1) {
+            animation: slide 6s infinite;
+        }
+
+        .slideshow img:nth-child(2) {
+            animation: slide 6s infinite 2s;
+        }
+
+        .slideshow img:nth-child(3) {
+            animation: slide 6s infinite 4s;
+        }
+        .slideshow img:nth-child(4) {
+            animation: slide 6s infinite 6s;
+        }
+        .slideshow img:nth-child(5) {
+            animation: slide 6s infinite 8s;
+        }
+        .slideshow img:nth-child(6) {
+            animation: slide 6s infinite 10s;
+        }
+        
+    </style>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li class="admin-login"><a href="{{ url_for('admin_login') }}">Admin Login</a></li>
+            <li class="user-login"><a href="{{ url_for('user_login') }}">User Login</a></li>
+        </ul>
+    </nav>
+    <h1>Welcome to the SkyLinkr</h1>
+    <div class="slideshow">
+        <img src="https://cutewallpaper.org/23x/5021l2mxr/271159165.jpg" alt="Image 1" class="active">
+        <img src="https://images.unsplash.com/photo-1464037866556-6812c9d1c72e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80" alt="Image 2">
+        <img src="https://img.freepik.com/free-photo/looking-through-window-journey-freedom-generated-by-ai_188544-23289.jpg?w=996&t=st=1686571783~exp=1686572383~hmac=b442c6f0756eee5843e97e42f9c91ccb957a125bdb8cdf4a9a23bee081736cb0" alt="Image 3">
+        <img src="https://img1.wallspic.com/previews/1/8/7/1/7/171781/171781-sitting_on_plane_wing-airplane-flight-wing-aviation-x750.jpg" alt="Image 4">
+        <img src="https://images3.alphacoders.com/145/145275.jpg" alt="Image 5">
+        <img src="https://cutewallpaper.org/23x/ppk0d6waj/2870515424.jpg" alt="Image 6">
+    </div>
+</body>
+</html>

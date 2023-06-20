@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Bookings</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #e0eaf3;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #333;
+            padding: 10px 20px;
+        }
+
+        .logout-button {
+            background-color: #92a8fe;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .logout-button:hover {
+            background-color: #555;
+        }
+
+        h1 {
+            text-align: center;
+            margin-top: 50px;
+            color: #333;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 30px;
+        }
+
+        th, td {
+            text-align: left;
+            padding: 8px;
+        }
+
+        th {
+            background-color: #92a8fe;
+            color: #fff;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        p {
+            text-align: center;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+  <h1>My Bookings</h1>
+  <div class="navbar">
+    <form action="{{ url_for('user_logout') }}" method="POST">
+      <button class="logout-button" type="submit">Logout</button>
+    </form>
+  </div>
+
+  {% if flights %}
+    <table>
+      <thead>
+        <tr>
+          <th>Flight Number</th>
+          <th>From</th>
+          <th>To</th>
+          <th>Date</th>
+          <th>Time</th>
+          <!-- <th>Seat Count</th> -->
+          <!-- <th>Adult Count</th>
+          <th>Child Count</th> -->
+        </tr>
+      </thead>
+      <tbody>
+        {% for flight in flights %}
+          <tr>
+            <td>{{ flight.flight_number }}</td>
+            <td>{{ flight.from_place }}</td>
+            <td>{{ flight.to_place }}</td>
+            <td>{{ flight.date }}</td>
+            <td>{{ flight.time }}</td>
+            <!-- <td>{{ flight.seat_count }}</td> -->
+            <!-- <td>{{ flight.adult_count }}</td>
+            <td>{{ flight.child_count }}</td> -->
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  {% else %}
+    <p>No bookings found.</p>
+  {% endif %}
+</body>
+</html>
